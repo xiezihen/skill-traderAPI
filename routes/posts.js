@@ -2,7 +2,11 @@ const express = require('express');
 const router = express.Router();
 const PostModel = require('../models/Post');
 
+
+
+
 router.get('/', async (req, res) => {
+    console.log("request made");
     try{
         const posts = await PostModel.find();
         res.send(posts);
@@ -13,7 +17,6 @@ router.get('/', async (req, res) => {
 
 router.get('/user/:userId' , async (req, res) => {
     try{
-        console.log(req.params.userId);
         const posts = await PostModel.find({userId: req.params.userId});
         res.send(posts);
     }catch(err){
@@ -37,6 +40,7 @@ router.post('/', async (req,res) => {
         userId: req.body.userId,
         description: req.body.description,
         campus: req.body.campus,
+        reward: req.body.reward,
     });
     try{
     const posted = await post.save();

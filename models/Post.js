@@ -9,7 +9,17 @@ const postSchema = mongoose.Schema({
         type : String,
         required : true
     },
-    campus : String 
+    campus : String, 
+    reward:{
+        type: Number,
+        required: false,
+        default: 0
+    },
+    date: {
+        type: Date,
+        required: false,
+        default: Date.now
+    }
 })
 
 module.exports = mongoose.model('Posts', postSchema)

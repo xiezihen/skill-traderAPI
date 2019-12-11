@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const postsRoute = require('./routes/posts');
+const loginRoute = require('./routes/login');
+const registerRoute = require('./routes/register');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 require('dotenv/config');
@@ -12,6 +14,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/posts', postsRoute);
+app.use('/login',loginRoute);
+app.use('/register',registerRoute);
 
 app.get('/', (req, res) => {
     res.send("home");
@@ -23,7 +27,5 @@ mongoose.connect(
      ()=>{
     console.log("connected")
 })
-
-
 
 app.listen(3000);
