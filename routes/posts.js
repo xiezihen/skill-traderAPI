@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const PostModel = require('../models/Post');
-
+const passport = require('passport');
 
 
 
@@ -35,12 +35,13 @@ router.get('/campus/:camp', async (req, res) => {
 
 })
 
-router.post('/', async (req,res) => {
+router.post('/',passport.authenticate('jwt',{session:false}) ,async (req,res) => {
     const post = new PostModel({
         userId: req.body.userId,
         description: req.body.description,
         campus: req.body.campus,
         reward: req.body.reward,
+        dateLost: req.body.dateLost,
     });
     try{
     const posted = await post.save();
