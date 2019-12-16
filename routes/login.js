@@ -8,6 +8,9 @@ require('dotenv/config');
 router.post('/', async (req,res) => {
     const username = req.body.username;
     const password = req.body.password;
+    if (!username || !password){
+        return res.send({message:"invalid json format"})
+    }
     User.getUserByUsername(username, (err, user) =>{
         if (err)throw err;
         if(!user){
@@ -15,15 +18,23 @@ router.post('/', async (req,res) => {
         }User.comparePassword(password, user.password, (err, isMatch)=>{
             if(err) throw err;
             if(isMatch){
-                const token = jwt.sign(user.toJSON(), process.env.SECRET,{
-                    expiresIn : 650000
+                    const token = jwt.sign(user.toJSON(), process.env.SECRET,{
+                    expiresIn : 6500
+                });
+        
+                res.json({
+                    success : true,
+                    token : token,
+                    user:{
+                        id: user._id,
+                        username : user.username,
+                        firstName: user.firstName,
+                        lastName: user.lastName
+
+                    }
+
                 });
 
-                res.json({
-                    success: true,
-                    token: 'JWT' + token,
-                    username: username
-                });
             } else {
                 return res.json({message: "Incorrect password"})
             }

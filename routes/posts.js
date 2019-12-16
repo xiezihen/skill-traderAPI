@@ -5,7 +5,7 @@ const passport = require('passport');
 
 
 
-router.get('/', async (req, res) => {
+router.get('/', passport.authenticate('jwt',{session:false}), async (req, res) => {
     console.log("request made");
     try{
         const posts = await PostModel.find();
@@ -34,6 +34,7 @@ router.get('/campus/:camp', async (req, res) => {
     }
 
 })
+
 
 router.post('/',passport.authenticate('jwt',{session:false}) ,async (req,res) => {
     const post = new PostModel({

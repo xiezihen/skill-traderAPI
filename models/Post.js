@@ -17,7 +17,8 @@ const postSchema = mongoose.Schema({
     },
     dateLost:{
         type: Date,
-        required: true,
+        default: Date.now,
+        required: false,
     },
     date: {
         type: Date,

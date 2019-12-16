@@ -5,11 +5,10 @@ require('dotenv/config');
 
 const initialize = (passport) =>{
     var opts = {}
-    opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
+    opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
     opts.secretOrKey = process.env.SECRET;
     passport.use(new jwtStrategy(opts, (jwt_payload,done) =>{
-        console.log(jwt_payload._doc);
-        User.getUserById(jwt_payload._doc._id, (err, user)=> {
+        User.findOne({id: jwt_payload.sub}, (err, user)=> {
             if (err) {
                 return done(err, false);
             }if (user) {
