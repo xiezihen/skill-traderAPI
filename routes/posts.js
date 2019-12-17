@@ -3,9 +3,9 @@ const router = express.Router();
 const PostModel = require('../models/Post');
 const passport = require('passport');
 
+//passport.authenticate('jwt',{session:false})
 
-
-router.get('/', passport.authenticate('jwt',{session:false}), async (req, res) => {
+router.get('/', async (req, res) => {
     console.log("request made");
     try{
         const posts = await PostModel.find();
