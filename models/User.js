@@ -5,11 +5,11 @@ const userSchema = mongoose.Schema({
     username:{
         type: String,
         required: true,
-        unique: true
+        unique: true,
     },
     password:{
         type: String,
-        required: true
+        required: true,
     },
     email:{
         type: String,
@@ -19,10 +19,12 @@ const userSchema = mongoose.Schema({
 
     firstName: {
         type: String,
+        default: "",
         required: false
     },
     lastName: {
         type: String,
+        default: "",
         required: false
     }
 });
