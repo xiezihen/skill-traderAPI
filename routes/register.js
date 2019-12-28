@@ -34,9 +34,16 @@ async (req, res) =>{
     const user = await newUser.save((err,savedUser) => {
         if(err){
             console.log(err);
-            return res.status(500).send(err);
+            if (err.code == 11000){
+                return res.send(
+                    {status: 500, message:"User already registerd", err:err})
+            }
+            return res.send({message: "server error", status:500, err:err});
         }
-        return res.status(200).send(newUser);
+        return res.status(200).send({
+            username: req.body.username,
+            status: 200
+        });
     });
     }catch(err){
     console.log(err);

@@ -23,17 +23,12 @@ router.post('/', async (req,res) => {
                 });
         
                 res.json({
-                    success : true,
-                    token : token,
-                    user:{
-                        id: user._id,
-                        username : user.username,
-                        email: user.email,
-                        firstName: user.firstName,
-                        lastName: user.lastName
-
-                    }
-
+                    id: user._id,
+                    username : user.username,
+                    email: user.email,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    token : token
                 });
 
             } else {

@@ -1,3 +1,4 @@
+
 const express = require('express');
 const app = express();
 const postsRoute = require('./routes/posts');
@@ -7,7 +8,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const initializePassport = require('./passport-config');
-
 require('dotenv/config');
 
 
