@@ -1,3 +1,3 @@
 # webapp2
-MEAN stack event webapp
-A centralized online space for campus events.
+backend RESTful API for MEAN stack event LostnFound webapp
+A centralized online space finding and returning lost articles.
