@@ -5,11 +5,14 @@ const userSchema = mongoose.Schema({
     username:{
         type: String,
         required: true,
-        unique: true,
+        index: {
+            unique: true,
+            collation: { locale: 'en', strength: 2 }
+        }
     },
     password:{
         type: String,
-        required: true,
+        required: true
     },
     email:{
         type: String,
@@ -37,7 +40,7 @@ module.exports.getUserById = (id, callback) =>{
     User.findById(id, callback);
 };
 module.exports.getUserByUsername = (username, callback) => {
-    User.findOne({username: username}, callback)
+    User.findOne({username: new RegExp(username, 'i')}, callback)
 };
 
 module.exports.comparePassword = (candidatePassword , hash, callback) => {
