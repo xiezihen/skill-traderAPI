@@ -27,7 +27,7 @@ async (req, res) =>{
     const newUser = new UserModel({
         username : req.body.username,
         password : hashedPassword,
-        email : req.body.email,
+        email : req.body.email.toLowerCase(),
         firstName : req.body.firstName,
         lastName : req.body.lastName
     });

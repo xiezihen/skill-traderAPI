@@ -37,12 +37,13 @@ router.get('/campus/:camp', async (req, res) => {
 
 
 router.post('/',passport.authenticate('jwt',{session:false}) ,async (req,res) => {
+    now = new Date();
     const post = new PostModel({
         userId: req.body.userId,
         description: req.body.description,
-        campus: req.body.campus,
-        reward: req.body.reward,
-        dateLost: req.body.dateLost,
+        skill: req.body.skill,
+        category: req.body.category,
+        date: now
     });
     try{
     const posted = await post.save();

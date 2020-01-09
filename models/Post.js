@@ -9,21 +9,16 @@ const postSchema = mongoose.Schema({
         type : String,
         required : true
     },
-    campus : String, 
-    reward:{
-        type: Number,
-        required: false,
-        default: 0
+    skill : String, 
+    category:{
+        type: String,
+        required: true,
+        enum: ['Technology', 'Art', 'Outdoors', 'Sports', 'Crafts', 'Games', 'Fitness','Other']
     },
-    dateLost:{
-        type: Date,
-        default: Date.now,
-        required: false,
-    },
+
     date: {
         type: Date,
         required: false,
-        default: Date.now
     }
 })
 

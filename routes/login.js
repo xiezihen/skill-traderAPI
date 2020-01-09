@@ -19,7 +19,7 @@ router.post('/', async (req,res) => {
             if(err) throw err;
             if(isMatch){
                     const token = jwt.sign(user.toJSON(), process.env.SECRET,{
-                    expiresIn : 6500
+                    expiresIn : 2000
                 });
         
                 res.json({
