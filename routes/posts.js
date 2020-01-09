@@ -36,7 +36,7 @@ router.get('/campus/:camp', async (req, res) => {
 })
 
 
-router.post('/',passport.authenticate('jwt',{session:false}) ,async (req,res) => {
+router.post('/',async (req,res) => {
     now = new Date();
     const post = new PostModel({
         userId: req.body.userId,
