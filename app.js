@@ -40,7 +40,8 @@ app.get('/', (req, res) => {
 //db connection
 mongoose.connect(
     process.env.MONGODB_URI,
-    { useNewUrlParser: true }, 
+    { useNewUrlParser: true,
+    useUnifiedTopology: true }, 
      ()=>{
     console.log("connected")
 })
