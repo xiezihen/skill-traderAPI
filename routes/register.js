@@ -25,7 +25,8 @@ async (req, res) =>{
     try{
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const newUser = new UserModel({
-        username : req.body.username,
+        username : req.body.username.toLowerCase(),
+        displayname: req.body.username,
         password : hashedPassword,
         email : req.body.email.toLowerCase(),
         firstName : req.body.firstName,

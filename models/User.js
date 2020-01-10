@@ -10,6 +10,7 @@ const userSchema = mongoose.Schema({
             collation: { locale: 'en', strength: 2 }
         }
     },
+    displayname: String,
     password:{
         type: String,
         required: true
