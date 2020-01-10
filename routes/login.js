@@ -24,7 +24,8 @@ router.post('/', async (req,res) => {
         
                 res.json({
                     id: user._id,
-                    username : user.username,
+                    username: user.username,
+                    displaname: user.displaname,
                     email: user.email,
                     firstName: user.firstName,
                     lastName: user.lastName,
