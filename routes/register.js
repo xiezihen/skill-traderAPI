@@ -31,7 +31,8 @@ async (req, res) =>{
         email : req.body.email.toLowerCase(),
         firstName : req.body.firstName,
         lastName : req.body.lastName,
-        city : req.body.city
+        city : req.body.city,
+        about: req.body.about
     });
     const user = await newUser.save((err,savedUser) => {
         if(err){
