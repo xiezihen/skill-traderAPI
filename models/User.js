@@ -30,6 +30,11 @@ const userSchema = mongoose.Schema({
         type: String,
         default: "",
         required: false
+    },
+    city: String,
+    about: {
+        type:String,
+        default: "Hi, im " + firstName +', ' + lastName
     }
 });
 

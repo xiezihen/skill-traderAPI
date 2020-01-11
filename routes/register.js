@@ -30,7 +30,8 @@ async (req, res) =>{
         password : hashedPassword,
         email : req.body.email.toLowerCase(),
         firstName : req.body.firstName,
-        lastName : req.body.lastName
+        lastName : req.body.lastName,
+        city : req.body.city
     });
     const user = await newUser.save((err,savedUser) => {
         if(err){
