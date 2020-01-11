@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const initializePassport = require('./passport-config');
+const helmet = require('helmet')
 require('dotenv/config');
 
 
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 //support parsing of application/x-www-form-urlencoded post data
 app.use(bodyParser.urlencoded({ extended: false }));
 //middleware
+app.use(helmet())
 initializePassport(passport);
 app.use(passport.initialize());
 app.use(passport.session());
