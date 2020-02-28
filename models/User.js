@@ -32,7 +32,14 @@ const userSchema = mongoose.Schema({
         required: false
     },
     city: String,
-    about: String
+    about: String,
+    mySkills:[{category:{
+        type: String,
+        required: true,
+        default: 'Other',
+        enum: ['Art', 'Crafts', 'Outdoor Recreation', 'Sports', 'Video Games', 'Fitness','Other','Technology', 'Science']
+    }, skill: String}],
+    learnSkills:[{type: String}]
         
 });
 

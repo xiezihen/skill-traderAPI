@@ -5,6 +5,7 @@ const cors = require('cors');
 const postsRoute = require('./routes/posts');
 const loginRoute = require('./routes/login');
 const registerRoute = require('./routes/register');
+const profileRoute = require('./routes/profile');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
@@ -30,15 +31,21 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
-
-
+app.use('/*', function (req, res, next) {
+    console.log('Request URL:', req.originalUrl)
+    next()
+  }, function (req, res, next) {
+    console.log('Request Type:', req.method)
+    next()
+  });
 //routes
 app.use('/posts', postsRoute);
 app.use('/login',loginRoute);
 app.use('/register',registerRoute);
+app.use('/profile',profileRoute);
 
 app.get('/', (req, res) => {
-    res.send("home");
+    res.send("api for <a>https://skilltrader.herokuapp.com/</a>");
 });
 
 //db connection
@@ -49,5 +56,5 @@ mongoose.connect(
      ()=>{
     console.log("connected")
 })
-
+mongoose.set('useFindAndModify', false);
 app.listen(process.env.PORT || 3000);
